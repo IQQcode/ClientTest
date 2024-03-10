@@ -1,0 +1,88 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
+}
+
+android {
+    namespace 'com.baidu.clienttest'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.baidu.clienttest"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    testOptions {
+        // 访问resource资源
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.constraintlayout
+    implementation libs.androidx.navigation.fragment.ktx
+    implementation libs.androidx.navigation.ui.ktx
+    implementation libs.androidx.fragment.testing
+
+    testImplementation libs.androidx.rules.v130
+
+
+    // mockito
+    testImplementation libs.mockito.core
+
+    // junit
+    testImplementation libs.junit
+    testImplementation libs.androidx.runner
+    androidTestImplementation libs.androidx.junit
+
+    // robolectric
+    testImplementation libs.robolectric
+
+    // Core library
+    androidTestImplementation libs.androidx.core
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation libs.androidx.runner
+    androidTestImplementation libs.androidx.rules
+    testImplementation libs.androidx.junit
+    testImplementation libs.androidx.truth
+
+    // Assertions
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.truth
+
+    // Espresso dependencies
+    androidTestImplementation libs.androidx.espresso.core
+    androidTestImplementation libs.androidx.espresso.contrib
+    androidTestImplementation libs.androidx.espresso.intents
+    androidTestImplementation libs.androidx.espresso.accessibility
+    androidTestImplementation libs.androidx.espresso.web
+    androidTestImplementation libs.androidx.idling.concurrent
+}
